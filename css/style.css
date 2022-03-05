@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    cursor: url(../img/cursor.png)2 2, pointer;
+}
+
 section {
     display: flex;
     justify-content: center;
