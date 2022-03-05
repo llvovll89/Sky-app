@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../img/sky2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+section .runway {
+    position: relative;
+    width: 400px;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    border-left: 20px solid rgba(0, 0, 0, 0.15);
+    border-right: 20px solid rgba(0, 0, 0, 0.15);
+    transition: transform 1s;
+    transition-delay: 1s;
+    transform-origin: top;
+}
+/* ionman fly on click left + hold */
+section:active .runway{
+    transform: scaleX(0.8) scaleY(0);
+    transition-delay: 0s;
+    transform-origin: bottom;
+}
+
+section .runway::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 15px;
+    height: 100%;
+    background: repeating-linear-gradient(transparent 0%, transparent 50%, #fff 50%, #fff 100%);
+    background-size: 20px 320px;
+    animation: animateRunway 0.5s linear infinite;
+}
+
+/* add effect on 'left click on hold' */
+section:active .runway::before {
+    animation: animateRunway 0.25s linear infinite;
+}
+
+/* animation */
+@keyframes animateRunway {
+    0%
+    {
+        background-position-y: 0px;
+    }
+    100%
+    {
+        background-position-y: 640px;
+    }
+}
+
+.ionman {
+    position: absolute;
+    bottom: 150px;
+    max-width: 280px;
+    pointer-events: none;
+    filter: drop-shadow(10px 10px 0 rgba(0,0,0,0.6));
+    transition: 5s;
+}
+
+/* mobile-size */
+@media (max-width: 450px) {
+    section .runway {
+        width: 350px;
+    }
+    .ionman {
+        bottom: 130px;
+        max-width: 235px;
+    }
+}
+
+section:active .ionman {
+    max-width: 400px;
+    filter: drop-shadow(200px 200px 0 rgba(0,0,0,0));
+}
